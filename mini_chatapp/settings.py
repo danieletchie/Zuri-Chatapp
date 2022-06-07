@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from email.mime import application
+from fcntl import F_SEAL_SEAL
 from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,11 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-5n3@nvgylf$6$_bariy5=mv%iq*22z4#wee=b!346an^-b@djn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    "zuri-mini-chatapp.herokuapp.com",
-    "localhost"
+    "zuri-mini-chatapp.herokuapp.com"
 ]
 
 
