@@ -1,0 +1,8 @@
+*__pycache__
+*migrations
+.env
+Pipfile
+*.bak
+*.dat
+*.dir
+*.txt
