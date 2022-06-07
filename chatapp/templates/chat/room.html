@@ -149,7 +149,7 @@
     </main>
     <script type="text/javascript">
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
-        let url = `ws://${window.location.host}/ws/chat/${roomName}/`
+        let url = `wss://${window.location.host}/ws/chat/${roomName}/`
         const chatSocket = new WebSocket(url);
         let user_names = {
             A: "Adam",
