@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-5n3@nvgylf$6$_bariy5=mv%iq*22z4#wee=b!346an^-b@djn
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://zuri-mini-chatapp.herokuapp.com/"
+    "zuri-mini-chatapp.herokuapp.com"
 ]
 
 
