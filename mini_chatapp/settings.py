@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-5n3@nvgylf$6$_bariy5=mv%iq*22z4#wee=b!346an^-b@djn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "https://zuri-mini-chatapp.herokuapp.com/"
+]
 
 
 ASGI_APPLICATION = "mini_chatapp.asgi.application"
@@ -126,9 +128,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-# STATIC_URL = "/static/"
-# STATICFILES_DIRS = [BASE_DIR / "static"]  
-# STATIC_ROOT = STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]  
+STATIC_ROOT =  BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
