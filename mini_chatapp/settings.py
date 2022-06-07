@@ -36,7 +36,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('memcached-13942.c263.us-east-1-2.ec2.cloud.redislabs.com', 13942)],
+            "hosts": [('default:sWCYSUGGol11uojP2pKtulwOLBbViJdk@redis-14931.c263.us-east-1-2.ec2.cloud.redislabs.com:', 14931)],
         },
     },
 }
