@@ -194,7 +194,7 @@
         window.onload = e => {
           chatHistory = JSON.parse(window.localStorage.getItem(roomName))
           usernameDiv = document.getElementById("username")
-          usernameDiv.TextContent = user
+          usernameDiv.innerHTML = user
           console.log("username", user)
           for(let chat in chatHistory){
             displayMessage(chatHistory[chat])
