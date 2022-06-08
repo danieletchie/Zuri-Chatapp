@@ -168,6 +168,7 @@
 
         const timeout = 300000
         let auotLogout = setTimeout(logout, timeout)
+        const elem = document.getElementById('messages');
 
         unique = characters.charAt(Math.floor(Math.random() * characters.length))
         Object.keys(user_names).forEach(key => {
@@ -211,6 +212,7 @@
         }
         }
 
+        
         chatSocket.onmessage = e => {
             const data = JSON.parse(e.data);
             sender = data.sender
@@ -229,6 +231,8 @@
                 message
             }
             displayMessage(user_data)
+
+            elem.scrollTop = elem.scrollHeight;
 
 
             chatHistory = JSON.parse(window.localStorage.getItem(roomName))
