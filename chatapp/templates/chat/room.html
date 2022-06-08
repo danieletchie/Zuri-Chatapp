@@ -179,6 +179,7 @@
             }
         })
 
+        
 
         const displayMessage = (user_data) => {
 
@@ -193,7 +194,7 @@
                     height="40"
                   />
                   <div class="text-muted small text-nowrap mt-2">
-                    2:33 am
+                    ${user_data.time}
                   </div>
                 </div>
                 <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
@@ -219,6 +220,8 @@
             const data = JSON.parse(e.data);
             sender = data.sender
             message = data.message
+            let time = new Date()
+            time = `${time.getHours()}:${time.getMinutes()}`
                 if (sender === user) {
                     classname = "chat-message-right"
                     sender = "You"
@@ -230,7 +233,8 @@
             user_data = {
                 classname,
                 sender,
-                message
+                message,
+                time
             }
             displayMessage(user_data)
 
