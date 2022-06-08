@@ -1,3 +1,4 @@
+console.log("Loadded Javascript")
 const roomName = JSON.parse(document.getElementById("room-name").textContent);
 let url = `wss://${window.location.host}/ws/chat/${roomName}/`;
 const chatSocket = new WebSocket(url);
