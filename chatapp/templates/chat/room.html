@@ -234,7 +234,7 @@
             else {
                 messages = [user_data]
             }
-            window.localStorage.setItem("chatHistory", JSON.stringify(messages))
+            window.localStorage.setItem(roomName, JSON.stringify(messages))
         };
 
     
@@ -249,7 +249,7 @@
             form.reset()
         });
 
-        
+
         document.getElementById("logout").onclick =  e => {
           window.localStorage.removeItem(roomName)
           window.location.pathname = '/';
