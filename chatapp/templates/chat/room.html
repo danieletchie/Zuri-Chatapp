@@ -228,8 +228,8 @@
 
         window.onload = e => {
           chatHistory = JSON.parse(window.localStorage.getItem("chatHistory"))
-          for(let i in chatHistory){
-            console.log(chatHistory[i])
+          for(let chat in chatHistory){
+            displayMessage(chatHistory[chat])
         }
         }
         const form = document.getElementById('form')
