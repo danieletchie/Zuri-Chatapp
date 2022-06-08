@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,8 +10,57 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'css/room.css' %}" >
-
+    <style type="text/css">
+        body {
+          margin-top: 20px;
+        }
+  
+        .chat-online {
+          color: #34ce57;
+        }
+  
+        .chat-offline {
+          color: #e4606d;
+        }
+  
+        .chat-messages {
+          display: flex;
+          flex-direction: column;
+          max-height: 500px;
+          overflow-y: scroll;
+        }
+  
+        .chat-message-left,
+        .chat-message-right {
+          display: flex;
+          flex-shrink: 0;
+        }
+  
+        .chat-message-left {
+          margin-right: auto;
+        }
+  
+        .chat-message-right {
+          flex-direction: row-reverse;
+          margin-left: auto;
+        }
+        .py-3 {
+          padding-top: 1rem !important;
+          padding-bottom: 1rem !important;
+        }
+        .px-4 {
+          padding-right: 1.5rem !important;
+          padding-left: 1.5rem !important;
+        }
+        .flex-grow-0 {
+          flex-grow: 0 !important;
+        }
+        .border-top {
+          border-top: 1px solid #dee2e6 !important;
+        }
+      </style>
+  
+    
   </head>
   <body>
     <main class="content">
@@ -103,8 +151,115 @@
         </div>
       </div>
     </main>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/room.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    
+    <script type="text/javascript">
+        const roomName = JSON.parse(document.getElementById('room-name').textContent);
+        let url = `wss://${window.location.host}/ws/chat/${roomName}/`
+        const chatSocket = new WebSocket(url);
+        let classname = ""
+
+        const timeout = 1800 * 1000
+        let auotLogout = setTimeout(logout, timeout)
+        const messagesDiv = document.getElementById("messages")
+
+        const user = `${Math.random().toString(36).substr(2,9)}`
+        
+
+        const displayMessage = (user_data) => {
+
+            htmlMessage = `
+            <div class="${user_data.classname} pb-4">
+                <div>
+                  <img
+                    src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+                    class="rounded-circle mr-1"
+                    alt="Chris Wood"
+                    width="40"
+                    height="40"
+                  />
+                  <div class="text-muted small text-nowrap mt-2">
+                    ${user_data.time}
+                  </div>
+                </div>
+                <div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
+                  <div class="font-weight-bold mb-1">${user_data.sender}</div>
+                  ${user_data.message}
+                </div>
+              </div>
+            `
+
+            messagesDiv.insertAdjacentHTML("beforeend", htmlMessage)
+        }
+        
+        window.onload = e => {
+          chatHistory = JSON.parse(window.localStorage.getItem(roomName))
+          usernameDiv = document.getElementById("username")
+          usernameDiv.innerHTML = user
+          for(let chat in chatHistory){
+            displayMessage(chatHistory[chat])
+        }
+        messagesDiv.scrollTop = messagesDiv.scrollHeight
+        }
+
+        
+        chatSocket.onmessage = e => {
+            const data = JSON.parse(e.data);
+            sender = data.sender
+            message = data.message
+            let time = new Date()
+            time = `${time.getHours()}:${time.getMinutes()}`
+                if (sender === user) {
+                    classname = "chat-message-right"
+                    sender = "You"
+
+                }
+                else {
+                    classname = "chat-message-left"
+                }
+            user_data = {
+                classname,
+                sender,
+                message,
+                time
+            }
+            displayMessage(user_data)
+
+            
+            let messages = ""
+            chatHistory = JSON.parse(window.localStorage.getItem(roomName))
+            if (chatHistory){
+                messages = [...chatHistory, user_data]
+            }
+            else {
+                messages = [user_data]
+            }
+            window.localStorage.setItem(roomName, JSON.stringify(messages))
+            
+            messagesDiv.scrollTop = messagesDiv.scrollHeight
+        };
+
+    
+        const form = document.getElementById('form')
+        form.addEventListener("submit", e => {
+            e.preventDefault()
+            const message = e.target.message.value
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'name': user
+            }));
+            form.reset()
+            clearTimeout(auotLogout)
+            auotLogout = setTimeout(logout, timeout);
+        });
+
+        logout = () => {
+            window.localStorage.removeItem(roomName)
+            window.location.pathname = '/';
+        }
+
+        document.getElementById("logout").onclick =  logout
+    </script>
   </body>
 </html>
