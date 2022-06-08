@@ -238,7 +238,7 @@
             }
             window.localStorage.setItem(roomName, JSON.stringify(messages))
 
-            setTimeout(logout, 60000)
+    
         };
 
     
@@ -250,6 +250,7 @@
                 'message': message,
                 'name': user
             }));
+            setTimeOut(logout, 60000)
             form.reset()
         });
 
