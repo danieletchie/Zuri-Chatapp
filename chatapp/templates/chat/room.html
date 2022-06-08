@@ -122,10 +122,10 @@
                   <div class="flex-grow-1 pl-3">
                     <strong>Sharon Lessman</strong>
                     {% comment %} <div class="text-muted small"><em>Typing...</em></div> {% endcomment %}
-                    <button id="logout" class="btn btn-danger btn-sm mr-1 px-3">Logout</button>
+                    <button id="logout" class="btn btn-danger btn-sm mr-1 px-3 float-left">Logout</button>
                   </div>
 
-                  
+
                 </div>
               </div>
 
@@ -232,9 +232,8 @@
             }
             displayMessage(user_data)
 
-            elem.scrollTop = elem.scrollHeight;
-
-
+            
+            
             chatHistory = JSON.parse(window.localStorage.getItem(roomName))
             if (chatHistory){
                 messages = [...chatHistory, user_data]
@@ -243,7 +242,8 @@
                 messages = [user_data]
             }
             window.localStorage.setItem(roomName, JSON.stringify(messages))
-    
+            
+            elem.scrollTop = elem.scrollHeight + 1;
         };
 
     
