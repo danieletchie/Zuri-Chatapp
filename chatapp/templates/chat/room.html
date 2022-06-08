@@ -168,7 +168,7 @@
 
         const timeout = 1800 * 1000
         let auotLogout = setTimeout(logout, timeout)
-        const elem = document.getElementById('messages');
+        const messages = document.getElementById("messages")
 
         unique = characters.charAt(Math.floor(Math.random() * characters.length))
         Object.keys(user_names).forEach(key => {
@@ -179,7 +179,6 @@
 
 
         const displayMessage = (user_data) => {
-            const messages = document.getElementById("messages")
 
             htmlMessage = `
             <div class="${user_data.classname} pb-4">
@@ -243,7 +242,7 @@
             }
             window.localStorage.setItem(roomName, JSON.stringify(messages))
             
-            elem.scrollTop = elem.scrollHeight + 1;
+            messages.scrollTop = messages.scrollHeight + 1;
         };
 
     
