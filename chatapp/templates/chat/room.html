@@ -248,7 +248,8 @@
             }));
             form.reset()
         });
-        window.localStorage.clear()
+
+        
         document.getElementById("logout").onclick =  e => {
           window.localStorage.removeItem(roomName)
           window.location.pathname = '/';
