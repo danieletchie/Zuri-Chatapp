@@ -216,7 +216,7 @@
             }
             chatHistory = window.localStorage.getItem("chatHistory")
             console.log(`The Previous Chat histry from localstorage is ${chatHistory}`)
-            if (chatHistory.length > 0){
+            if (chatHistory){
                 messages = [...messages_array, user_data]
             }
             else {
