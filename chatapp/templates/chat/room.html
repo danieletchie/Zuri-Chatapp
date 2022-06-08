@@ -202,7 +202,7 @@
         }
         
         window.onload = e => {
-          chatHistory = JSON.parse(window.localStorage.getItem("chatHistory"))
+          chatHistory = JSON.parse(window.localStorage.getItem(roomName))
           for(let chat in chatHistory){
             displayMessage(chatHistory[chat])
         }
@@ -225,7 +225,7 @@
                 sender,
                 message
             }
-            chatHistory = JSON.parse(window.localStorage.getItem("chatHistory"))
+            chatHistory = JSON.parse(window.localStorage.getItem(roomName))
             displayMessage(user_data)
             console.log(`The Previous Chat histry from localstorage is ${chatHistory}`)
             if (chatHistory){
@@ -250,8 +250,8 @@
         });
 
         document.getElementById("logout").onclick =  e => {
-          console.log("You just logged out")
-          console.log(e)
+          window.localStorage.removeItem(roomName)
+          window.location.pathname = '/';
         }
     </script>
   </body>
