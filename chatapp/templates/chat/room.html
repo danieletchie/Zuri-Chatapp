@@ -172,12 +172,8 @@
         let auotLogout = setTimeout(logout, timeout)
         const messagesDiv = document.getElementById("messages")
 
-        unique = characters.charAt(Math.floor(Math.random() * characters.length))
-        Object.keys(user_names).forEach(key => {
-            if (key === unique){
-                user += user_names[key]
-            }
-        })
+        user = `_${Math.random().toString(36).substr(2,9)}`
+        console.log(user)
 
         
 
