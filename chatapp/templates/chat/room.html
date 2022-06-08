@@ -165,7 +165,9 @@
         let user = ""
         let classname = ""
         characters = "ABCDEF"
-        let auotLogout = setTimeout(logout, 30000)
+
+        const timeout = 300000
+        let auotLogout = setTimeout(logout, timeout)
 
         unique = characters.charAt(Math.floor(Math.random() * characters.length))
         Object.keys(user_names).forEach(key => {
@@ -252,7 +254,7 @@
             }));
             form.reset()
             clearTimeout(auotLogout)
-            auotLogout = setTimeout(logout, 30000);
+            auotLogout = setTimeout(logout, timeout);
         });
 
         logout = () => {
