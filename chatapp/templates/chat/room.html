@@ -123,6 +123,9 @@
                     <strong>Sharon Lessman</strong>
                     {% comment %} <div class="text-muted small"><em>Typing...</em></div> {% endcomment %}
                   </div>
+                  <div>
+                    <button class="btn btn-primary btn-lg mr-1 px-3">Logout</button>
+                  </div>
                 </div>
               </div>
 
@@ -169,6 +172,8 @@
                 user += user_names[key]
             }
         })
+
+
         const displayMessage = (user_data) => {
             const messages = document.getElementById("messages")
 
@@ -195,7 +200,13 @@
 
             messages.insertAdjacentHTML("beforeend", htmlMessage)
         }
-
+        
+        window.onload = e => {
+          chatHistory = JSON.parse(window.localStorage.getItem("chatHistory"))
+          for(let chat in chatHistory){
+            displayMessage(chatHistory[chat])
+        }
+        }
 
         chatSocket.onmessage = e => {
             const data = JSON.parse(e.data);
@@ -226,12 +237,7 @@
             window.localStorage.setItem("chatHistory", JSON.stringify(messages))
         };
 
-        window.onload = e => {
-          chatHistory = JSON.parse(window.localStorage.getItem("chatHistory"))
-          for(let chat in chatHistory){
-            displayMessage(chatHistory[chat])
-        }
-        }
+    
         const form = document.getElementById('form')
         form.addEventListener("submit", e => {
             e.preventDefault()
