@@ -165,7 +165,7 @@
         let user = ""
         let classname = ""
         characters = "ABCDEF"
-        let auotLogout = ""
+        let auotLogout = setTimeout(logout, 30000)
 
         unique = characters.charAt(Math.floor(Math.random() * characters.length))
         Object.keys(user_names).forEach(key => {
@@ -238,7 +238,6 @@
                 messages = [user_data]
             }
             window.localStorage.setItem(roomName, JSON.stringify(messages))
-            auotLogout = setTimeout(logout, 30000);
     
         };
 
@@ -253,6 +252,7 @@
             }));
             form.reset()
             clearTimeout(auotLogout)
+            auotLogout = setTimeout(logout, 30000);
         });
 
         logout = () => {
