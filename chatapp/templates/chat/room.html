@@ -249,10 +249,10 @@
             form.reset()
         });
 
-        const logout = document.getElementById("logout")
-        logout.addEventListener("click", e=> {
+        document.getElementById("logout").onclick =  e => {
           console.log("You just logged out")
-        })
+          console.log(e)
+        }
     </script>
   </body>
 </html>
