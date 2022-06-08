@@ -6,4 +6,4 @@ Chatapp challenge solution for Zuri
 2. Resume back to my chat history until I click on "log out of chat" before I lose chat history. or
 3. if I stay away from the chat platform for more than 30 minutes, then I lose chat history
 
-live app link = zuri-mini-chatapp.herokuapp.com/
+live app link = https://zuri-mini-chatapp.herokuapp.com/
