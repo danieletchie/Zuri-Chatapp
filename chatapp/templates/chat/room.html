@@ -232,6 +232,7 @@
 
 
             chatHistory = JSON.parse(window.localStorage.getItem(roomName))
+            console.log(`The Previous Chat histry from localstorage is ${chatHistory}`)
             if (chatHistory){
                 messages = [...chatHistory, user_data]
             }
