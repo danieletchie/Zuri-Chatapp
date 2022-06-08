@@ -120,7 +120,7 @@
                     />
                   </div>
                   <div class="flex-grow-1 pl-2">
-                    <strong>Sharon Lessman</strong>
+                    <strong id="username">Sharon Lessman</strong>
                     {% comment %} <div class="text-muted small"><em>Typing...</em></div> {% endcomment %}
                   </div>
                   <div>
@@ -156,25 +156,13 @@
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
         let url = `wss://${window.location.host}/ws/chat/${roomName}/`
         const chatSocket = new WebSocket(url);
-        let user_names = {
-            A: "Adam",
-            B: "Ben",
-            C: "Charlse",
-            D: "Daniel",
-            E: "Emmanuel",
-            F: "Favour"
-        }
-        let user = ""
         let classname = ""
-        characters = "ABCDEF"
 
         const timeout = 1800 * 1000
         let auotLogout = setTimeout(logout, timeout)
         const messagesDiv = document.getElementById("messages")
 
-        user = `_${Math.random().toString(36).substr(2,9)}`
-        console.log(user)
-
+        const user = `${Math.random().toString(36).substr(2,9)}`
         
 
         const displayMessage = (user_data) => {
@@ -205,6 +193,8 @@
         
         window.onload = e => {
           chatHistory = JSON.parse(window.localStorage.getItem(roomName))
+          usernameDiv = document.getElementById("username")
+          usernameDiv.TextContent = user
           for(let chat in chatHistory){
             displayMessage(chatHistory[chat])
         }
