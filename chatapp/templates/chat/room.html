@@ -226,12 +226,12 @@
             window.localStorage.setItem("chatHistory", JSON.stringify(messages))
         };
 
-        window.onload( e => {
+        window.onload = e => {
           chatHistory = JSON.parse(window.localStorage.getItem("chatHistory"))
           for(let i in chatHistory){
             console.log(chatHistory[i])
         }
-        })
+        }
         const form = document.getElementById('form')
         form.addEventListener("submit", e => {
             e.preventDefault()
