@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-5n3@nvgylf$6$_bariy5=mv%iq*22z4#wee=b!346an^-b@djn
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "zuri-mini-chatapp.herokuapp.com"
+    "zuri-mini-chatapp.herokuapp.com",
 ]
+
 
 
 ASGI_APPLICATION = "mini_chatapp.asgi.application"
