@@ -34,10 +34,7 @@ ALLOWED_HOSTS = [
 ASGI_APPLICATION = "mini_chatapp.asgi.application"
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [('redis://sWCYSUGGol11uojP2pKtulwOLBbViJdk@redis-14931.c263.us-east-1-2.ec2.cloud.redislabs.com:14931', 14931)],
-        },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
     },
 }
 # Application definition
