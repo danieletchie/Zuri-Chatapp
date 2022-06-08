@@ -27,7 +27,7 @@
         .chat-messages {
           display: flex;
           flex-direction: column;
-          max-height: 800px;
+          max-height: 700px;
           overflow-y: scroll;
         }
   
@@ -67,6 +67,7 @@
     <main class="content">
       <div class="container p-0">
         <h1 class="h3 mb-3">Messages</h1>
+        <button id="logout" class="btn btn-danger btn-sm float-right">Logout</button>
 
         <div class="card">
           <div class="row g-0">
@@ -209,6 +210,7 @@
           for(let chat in chatHistory){
             displayMessage(chatHistory[chat])
         }
+        messagesDiv.scrollTop = messagesDiv.scrollHeight
         }
 
         
@@ -242,7 +244,7 @@
             }
             window.localStorage.setItem(roomName, JSON.stringify(messages))
             
-            messagesDiv.scrollTop = messagesDiv.scrollHeight + 1;
+            messagesDiv.scrollTop = messagesDiv.scrollHeight
         };
 
     
