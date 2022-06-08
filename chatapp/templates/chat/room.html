@@ -172,7 +172,6 @@
 
         chatSocket.onmessage = e => {
             const data = JSON.parse(e.data);
-            console.log("Data", data)
             sender = data.sender
             if (data.message) {
                 const messages = document.getElementById("messages")
